@@ -5,7 +5,6 @@
 const score0EL = document.getElementById('score--0');
 const score1EL = document.getElementById('score--1');
 const btnNew = document.querySelector('.btn--new');
-const btnHold = document.querySelector('.btn--hold');
 const diceEl = document.querySelector('.dice');
 const current0EL = document.getElementById('current--0');
 const current1EL = document.getElementById('current--1');
@@ -21,8 +20,22 @@ let isPlaying = true;
 // hide the dice
 diceEl.classList.add('hidden');
 
-// ROLL DICE FUNCTIONALITY
+//SWITCH PLAYER FUNCTIONALITY
+const switchPlayer = () => {
+  currentScore = 0;
+  document.querySelector(`#current--${activePlayer}`).textContent =
+    currentScore;
+  document
+    .querySelector(`.player--${activePlayer}`)
+    .classList.remove('player--active');
+  // SWITCH TO NEXT PLAYER
+  activePlayer = activePlayer === 0 ? 1 : 0;
+  document
+    .querySelector(`.player--${activePlayer}`)
+    .classList.add('player--active');
+};
 
+// ROLL DICE FUNCTIONALITY
 const rollDice = () => {
   if (isPlaying) {
     // 1. GENERATE A RANDOM NUMBER BETWEEN 1 AND 6
@@ -42,17 +55,30 @@ const rollDice = () => {
       document.querySelector(`#current--${activePlayer}`).textContent =
         currentScore;
     } else {
-      currentScore = 0;
-      document.querySelector(`#current--${activePlayer}`).textContent =
-        currentScore;
+      switchPlayer();
+    }
+  }
+};
+
+// HOLD BUTTON FUNCTIONALITY
+const holdScore = () => {
+  if (isPlaying) {
+    scores[activePlayer] += currentScore;
+    document.getElementById(`score--${activePlayer}`).textContent =
+      scores[activePlayer];
+
+    if (scores[activePlayer] >= 20) {
       document
         .querySelector(`.player--${activePlayer}`)
         .classList.remove('player--active');
-      // SWITCH TO NEXT PLAYER
-      activePlayer = activePlayer === 0 ? 1 : 0;
       document
         .querySelector(`.player--${activePlayer}`)
-        .classList.add('player--active');
+        .classList.add('player--winner');
+      diceEl.classList.add('hidden');
+      document.getElementById(`current--${activePlayer}`).textContent = 0;
+      isPlaying = false;
+    } else {
+      switchPlayer();
     }
   }
 };
