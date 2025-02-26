@@ -294,3 +294,22 @@ let bookTitle = 'unknown';
 let bookAuthor = 'unknown';
 
 ({ title: bookTitle, author: bookAuthor } = books[0]);
+
+// ASSIGNMENT 2.5
+const {
+  thirdParty: {
+    goodreads: { rating: bookRating },
+  },
+} = books[0];
+
+// ASSIGNMENT 2.6
+
+const printBookInfo = function ({
+  title,
+  author: [, a],
+  year = 'year unknown',
+}) {
+  console.log(`${title} by ${a}, ${year}`);
+};
+
+printBookInfo(books[0]);
