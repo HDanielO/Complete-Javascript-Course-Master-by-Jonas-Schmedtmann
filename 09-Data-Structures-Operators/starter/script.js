@@ -276,3 +276,21 @@ const ratingStars = [63405, 1808];
 
 const [fiveStarRatings = 0, oneStarRatings = 0, threeStarRatings = 0] =
   ratingStars;
+
+// ASSIGNMENT 2.1
+
+const { title, author, ISBN } = books[0];
+
+// ASSIGNMENT 2.2
+
+const { keywords: tags } = books[0];
+
+// ASSIGNMENT 2.3
+
+const { language, programmingLanguage = 'unknown' } = books[6];
+
+// ASSIGNMENT 2.4
+let bookTitle = 'unknown';
+let bookAuthor = 'unknown';
+
+({ title: bookTitle, author: bookAuthor } = books[0]);
