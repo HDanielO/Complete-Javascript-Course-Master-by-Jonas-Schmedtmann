@@ -313,3 +313,16 @@ const printBookInfo = function ({
 };
 
 printBookInfo(books[0]);
+
+// ASSIGNMENT 3.1
+
+const bookAuthors = [...books[0].author, ...books[1].author];
+
+// ASSIGNMENT 3.2
+
+const spellWord = function (word) {
+  console.log(...word);
+};
+
+spellWord('boy');
+
