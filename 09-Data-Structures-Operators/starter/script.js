@@ -363,3 +363,14 @@ for (let i = 0; i < books.length; i++) {
   books[i].onlineContent &&
     console.log(`"${books[i].title}" provides online content`);
 }
+
+// ASSIGNMENT 6.1
+
+for (let i = 0; i < books.length; i++) {
+  books[i].onlineContent ??
+    console.log(
+      `"${books[i].title}" provides no data about its online content`
+    );
+}
+
+// but this does not account for books that its onlineContent property has been set to false
