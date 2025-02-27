@@ -321,8 +321,45 @@ const bookAuthors = [...books[0].author, ...books[1].author];
 // ASSIGNMENT 3.2
 
 const spellWord = function (word) {
-  console.log(...word);
+  const destructuredWord = [...word];
+  let spaceWordArr = '';
+  for (let i = 0; i < destructuredWord.length; i++) {
+    spaceWordArr += destructuredWord[i];
+    spaceWordArr += ' ';
+  }
+  spaceWordArr.slice(0, -1);
+  return spaceWordArr;
 };
 
-spellWord('boy');
+const testword = spellWord('Daniel');
 
+console.log(testword);
+
+// ASSIGNMENT 4.1
+
+const [mainKeyword, ...rest] = books[0].keywords;
+
+// ASSIGNMENT 4.2
+
+const { publisher: bookPublisher, ...restOfTheBook } = books[1];
+
+// ASSIGNMENT 4.3
+
+function printBookAuthorsCount(title, ...authors) {
+  console.log(`The book "${title}" has ${authors.length} authors`);
+}
+
+printBookAuthorsCount('Algorithms', 'Robert Sedgewick', 'Kevin Wayne');
+
+// ASSIGNMENT 5.1
+
+function hasExamplesInJava(bookObject) {
+  return bookObject.programmingLanguage === 'Java' || 'no data available';
+}
+
+// ASSIGNMENT 5.2
+
+for (let i = 0; i < books.length; i++) {
+  books[i].onlineContent &&
+    console.log(`"${books[i].title}" provides online content`);
+}
