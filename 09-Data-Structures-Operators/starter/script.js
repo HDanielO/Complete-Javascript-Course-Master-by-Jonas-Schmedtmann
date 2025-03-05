@@ -385,3 +385,71 @@ for (let i = 0; i < books.length; i++) {
 for (let i = 0; i < books.length; i++) {
   books[i].highlighted &&= !(books[i].thirdParty.goodreads.rating < 4.2);
 }
+
+// CODING CHALLENGE 1
+
+// GAME DATA
+const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borrussia Dortmund',
+  players: [
+    [
+      'Neuer',
+      'Pavard',
+      'Martinez',
+      'Alaba',
+      'Davies',
+      'Kimmich',
+      'Goretzka',
+      'Coman',
+      'Muller',
+      'Gnarby',
+      'Lewandowski',
+    ],
+    [
+      'Burki',
+      'Schulz',
+      'Hummels',
+      'Akanji',
+      'Hakimi',
+      'Weigl',
+      'Witsel',
+      'Hazard',
+      'Brandt',
+      'Sancho',
+      'Gotze',
+    ],
+  ],
+  score: '4:0',
+  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+  date: 'Nov 9th, 2037',
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
+
+const [players1, players2] = game.players;
+
+const [gk, ...fieldPlayers] = players1;
+
+const allPlayers = [...players1, ...players2];
+
+const playersFinal = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
+
+const { team1, x: draw, team2 } = game.odds;
+
+console.log(team1, draw, team2);
+
+function printGoals(...goalScorers) {
+  for (let i = 0; i < goalScorers.length; i++) {
+    console.log(goalScorers[i]);
+  }
+  console.log(`Total number of Goals scored = ${goalScorers.length}`);
+}
+
+team1 > team2 && console.log('Team 1 is most likely to win');
+team1 > team2 || console.log('Team 2 is most likely to win');
+
+
