@@ -327,7 +327,7 @@ const spellWord = function (word) {
     spaceWordArr += destructuredWord[i];
     spaceWordArr += ' ';
   }
-  spaceWordArr.slice(0, -1);
+  spaceWordArr.slice(0, -1); // removes the last character in the string with is a " "
   return spaceWordArr;
 };
 
@@ -374,3 +374,14 @@ for (let i = 0; i < books.length; i++) {
 }
 
 // but this does not account for books that its onlineContent property has been set to false
+
+// ASSIGNMENT 7.1
+
+for (let i = 0; i < books.length; i++) {
+  books[i].edition ||= 1;
+}
+
+// ASSIGNMENT 7.2
+for (let i = 0; i < books.length; i++) {
+  books[i].highlighted &&= !(books[i].thirdParty.goodreads.rating < 4.2);
+}
