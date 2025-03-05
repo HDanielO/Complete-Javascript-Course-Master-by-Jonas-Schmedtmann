@@ -452,4 +452,31 @@ function printGoals(...goalScorers) {
 team1 > team2 && console.log('Team 1 is most likely to win');
 team1 > team2 || console.log('Team 2 is most likely to win');
 
+//for..of operator
 
+//ASSIGNMENT 8.1
+let pageSum = 0;
+
+for (let book of books) {
+  pageSum += book.pages;
+}
+
+//ASSIGNMENT 8.2
+
+const allAuthors = [];
+
+for (let book of books) {
+  if (typeof book.author === 'object') {
+    allAuthors.push(...book.author);
+  } else {
+    allAuthors.push(book.author);
+  }
+}
+
+console.log(allAuthors);
+
+//ASSIGNMENT 8.3
+
+for (const [index, element] of allAuthors.entries()) {
+  console.log(`${index+1}. ${element}`);
+}
