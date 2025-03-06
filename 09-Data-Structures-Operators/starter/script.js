@@ -506,3 +506,14 @@ const newBook2 = {
   pages,
   // ...
 };
+function printMagicIndex(arr) {
+  console.log(arr?.[42]);
+}
+
+printMagicIndex([0, 1, 2, 3, 4, 5]); // undefined
+printMagicIndex(); // undefined; if not using ?., this would throw an error: "Cannot read properties of undefined (reading '42')"
+
+// ASSIGNMENT 10.1
+function getFirstKeyword(book) {
+  return book.keywords?.[0];
+}
