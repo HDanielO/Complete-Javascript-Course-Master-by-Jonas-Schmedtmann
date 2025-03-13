@@ -6,7 +6,7 @@ const flights =
 
 // Data needed for first part of the section
 const restaurant = {
-  name: 'Classico Italiano',
+  name: 'Classico   o',
   location: 'Via Angelo Tavanti 23, Firenze, Italy',
   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
@@ -553,3 +553,66 @@ const entries2 = Object.entries(books[0].thirdParty.goodreads);
 //ASSIGNMENT 11.4
 
 console.log(entries, entries2);
+
+//  CODING CHALLENGE 2
+
+//1
+for (const [i, e] of game.scored.entries()) {
+  console.log(`Goal ${i + 1} : ${e}`);
+}
+
+//2
+let oddsTotal = 0;
+for (const odds of Object.values(game.odds)) {
+  oddsTotal += odds;
+}
+const oddsAverage = oddsTotal / Object.values(game.odds).length;
+console.log(oddsAverage);
+
+//3
+
+for (const [team, odd] of Object.entries(game.odds)) {
+  if (game[team]) {
+    console.log(`Odd of ${game[team] && 'Victory ' + game[team]}: ${odd} `);
+  } else {
+    console.log(`Odd of draw: ${odd} `);
+  }
+}
+
+//4(bonus)
+
+// const scorers = {};
+
+// for (const goalScorer of game.scored) {
+//   scorers[goalScorer] = scorers[goalScorer] && 2;
+//   scorers[goalScorer] = scorers[goalScorer] || 1;
+// }
+
+// console.log(scorers);
+//the solution was to use a ternary operator.
+
+//solution
+//3
+
+for (const [team, odd] of Object.entries(game.odds)) {
+  const teamStr = team === 'x' ? 'draw' : `Victory ${game[team]}`;
+
+  console.log(`Odd of ${teamStr}: ${odd} `);
+}
+
+//4
+const scorers = {};
+
+for (const goalScorer of game.scored) {
+  scorers[goalScorer] ? scorers[goalScorer]++ : (scorers[goalScorer] = 1);
+}
+
+console.log(scorers);
+
+const orderSet = new Set(['Pasta', 'Fan', 1]);
+console.log(orderSet);
+console.log(orderSet.size);
+console.log(orderSet.has('boy'));
+console.log(orderSet.has(1));
+console.log(orderSet.add('boy'));
+console.log(orderSet.delete('FaN'));
