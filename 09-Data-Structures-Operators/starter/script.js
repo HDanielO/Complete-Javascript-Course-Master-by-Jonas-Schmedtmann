@@ -517,3 +517,39 @@ printMagicIndex(); // undefined; if not using ?., this would throw an error: "Ca
 function getFirstKeyword(book) {
   return book.keywords?.[0];
 }
+// Lesson 11
+console.log(Object.keys(restaurant)); // to store all the object property(keys) names in an array. we can then use for (..of ) loop to loop through the elements in the array
+
+console.log(Object.values(restaurant)); // stores all the object values in an array.
+
+console.log(restaurant.mainMenu.entries());
+
+for (const [i, e] of restaurant.mainMenu.entries()) {
+  console.log(`${i + 1} ${e}`);
+}
+
+//entries can also be used in objects to return the key and value together, just like how it returns the index and the value together when uses it with an array.
+
+console.log(Object.entries(restaurant));
+//this creates an array that contains mini arrays which contain the key(as the first item) and the value as the second item.
+// [[key1,value1],[key2,value2],[key3,value3]...]
+
+//ASSIGNMENT 11.1
+const entries = [];
+
+for (const details of Object.keys(books[0].thirdParty.goodreads)) {
+  entries.push([details]);
+}
+//ASSIGNMENT 11.2
+Object.values(books[0].thirdParty.goodreads);
+
+for (const [i, e] of Object.values(books[0].thirdParty.goodreads).entries()) {
+  entries[i].push(e);
+}
+//ASSIGNMENT 11.3
+
+const entries2 = Object.entries(books[0].thirdParty.goodreads);
+
+//ASSIGNMENT 11.4
+
+console.log(entries, entries2);
