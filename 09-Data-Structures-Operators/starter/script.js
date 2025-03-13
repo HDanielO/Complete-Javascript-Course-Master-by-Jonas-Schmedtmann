@@ -6,7 +6,7 @@ const flights =
 
 // Data needed for first part of the section
 const restaurant = {
-  name: 'Classico   o',
+  name: 'Classico Italiano',
   location: 'Via Angelo Tavanti 23, Firenze, Italy',
   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
@@ -609,10 +609,72 @@ for (const goalScorer of game.scored) {
 
 console.log(scorers);
 
+//SETS
 const orderSet = new Set(['Pasta', 'Fan', 1]);
 console.log(orderSet);
 console.log(orderSet.size);
 console.log(orderSet.has('boy'));
 console.log(orderSet.has(1));
 console.log(orderSet.add('boy'));
-console.log(orderSet.delete('FaN'));
+console.log(orderSet.delete('Fan'));
+
+const italianFoods = new Set([
+  'pasta',
+  'gnocchi',
+  'tomatoes',
+  'olive oil',
+  'garlic',
+  'basil',
+]);
+
+const mexicanFoods = new Set([
+  'tortillas',
+  'beans',
+  'rice',
+  'tomatoes',
+  'avocado',
+  'garlic',
+]);
+
+console.log(italianFoods.intersection(mexicanFoods));
+
+console.log([
+  ...new Set([
+    'pasta',
+    'gnocchi',
+    'tomatoes',
+    'olive oil',
+    'garlic',
+    'basil',
+  ]).intersection(
+    new Set(['tortillas', 'beans', 'rice', 'tomatoes', 'avocado', 'garlic'])
+  ),
+]);
+
+//ASSIGNMENT 12.1
+
+const allKeywords = [];
+
+for (const book of books) {
+  allKeywords.push(...book.keywords);
+}
+
+console.log(allKeywords);
+
+//ASSIGNMENT 12.2
+
+const uniqueKeywords = new Set(allKeywords);
+
+//ASSIGNMENT 12.3
+uniqueKeywords.add('coding');
+uniqueKeywords.add('science');
+console.log(uniqueKeywords);
+
+//ASSIGNMENT 12.4
+uniqueKeywords.delete('business');
+
+//ASSIGNMENT 12.5
+const uniqueKeywordsArr = [...uniqueKeywords];
+
+//ASSIGNMENT 12.6
+uniqueKeywords.clear();
