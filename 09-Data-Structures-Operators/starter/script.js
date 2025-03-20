@@ -678,3 +678,40 @@ const uniqueKeywordsArr = [...uniqueKeywords];
 
 //ASSIGNMENT 12.6
 uniqueKeywords.clear();
+
+//MAPS FUNDAMENTALS
+
+const restaurantMap = new Map();
+
+console.log(restaurantMap);
+
+restaurantMap.set('a', 1);
+restaurantMap.set('b', 2);
+restaurantMap.set('c', 3);
+
+console.log(restaurantMap);
+console.log(restaurantMap.set('d', 4));
+console.log(restaurantMap.get('d'));
+console.log(restaurantMap.has('d'));
+console.log(restaurantMap.delete('d'));
+
+//ASSIGNMENT 13.1
+
+// const bookMap = new Map();
+// bookMap.set('title', 'Clean Code');
+// bookMap.set('author', 'Robert C. Martin');
+const bookMap = new Map([
+  ['title', 'Clean Code'],
+  ['author', 'Robert C. Martin'],
+]);
+
+// ASSIGNMENT 13.2
+bookMap.set('pages', 464);
+
+// ASSIGNMENT 13.3
+console.log(`${bookMap.get('title')} by ${bookMap.get('author')}`);
+// ASSIGNMENT 13.4
+console.log(bookMap.size);
+// ASSIGNMENT 13.5
+bookMap.has('author') || console.log('The author of the book is known');
+console.log(bookMap);
