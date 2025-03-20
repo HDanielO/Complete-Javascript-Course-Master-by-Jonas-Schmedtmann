@@ -715,3 +715,32 @@ console.log(bookMap.size);
 // ASSIGNMENT 13.5
 bookMap.has('author') || console.log('The author of the book is known');
 console.log(bookMap);
+
+//MAPS ITERATION
+const question = new Map([
+  ['question', 'What is the best programming language in the world?'],
+  [1, 'C'],
+  [2, 'Java'],
+  [3, 'JavaScript'],
+  ['correct', 3],
+  [true, 'Correct 🎉'],
+  [false, 'Try again!'],
+]);
+console.log(question);
+
+for (const [key, value] of question) {
+  if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
+}
+
+const answer = Number(prompt('Your answer'));
+
+console.log(question.get(answer === question.get('correct')));
+
+// ASSIGNMENT 14.1
+const firstBookMap = new Map(Object.entries(books[0]));
+// ASSIGNMENT 14.2
+for (const [key, value] of firstBookMap) {
+  if (typeof value === 'number') {
+    console.log(key);
+  }
+}
