@@ -732,9 +732,9 @@ for (const [key, value] of question) {
   if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
 }
 
-const answer = Number(prompt('Your answer'));
+// const answer = Number(prompt('Your answer'));
 
-console.log(question.get(answer === question.get('correct')));
+// console.log(question.get(answer === question.get('correct')));
 
 // ASSIGNMENT 14.1
 const firstBookMap = new Map(Object.entries(books[0]));
@@ -744,3 +744,212 @@ for (const [key, value] of firstBookMap) {
     console.log(key);
   }
 }
+
+//CODING CHALLENGE 3
+const gameEvents = new Map([
+  [17, '⚽ GOAL'],
+  [36, '� Substitution'],
+  [47, '⚽ GOAL'],
+  [61, '� Substitution'],
+  [64, '� Yellow card'],
+  [69, '� Red card'],
+  [70, '� Substitution'],
+  [72, '� Substitution'],
+  [76, '⚽ GOAL'],
+  [80, '⚽ GOAL'],
+  [92, '� Yellow card'],
+]);
+
+//1
+const events = [...new Set(gameEvents.values())];
+console.log(events);
+//2
+gameEvents.delete(64);
+console.log(gameEvents);
+//3
+console.log(`An event happened, on 
+average, every ${90 / gameEvents.size} minutes`);
+//4
+for (const [key, value] of gameEvents) {
+  if (key >= 0 && key <= 45) {
+    console.log(`[FIRST HALF] ${key}: ${value}`);
+  } else if (key >= 45) {
+    console.log(`[SECOND HALF] ${key}: ${value}`);
+  }
+}
+
+let firstName = 'Dan is a good boy';
+firstName = firstName.slice(0, -1);
+console.log(firstName);
+
+function checkMiddleSeat(seat) {
+  if (seat.slice(-1) === 'B' || seat.slice(-1) === 'E') {
+    console.log('This is a middle seat');
+  } else {
+    console.log('This is not a middle seat');
+  }
+}
+
+// ASSIGNMENT 15.1
+checkMiddleSeat('11B');
+checkMiddleSeat('10A');
+checkMiddleSeat('1E');
+
+const book1 = books[0].ISBN;
+console.log(book1[6], book1[4], book1[9], book1[8]);
+
+// ASSIGNMENT 15.2
+const quote =
+  'A computer once beat me at chess, but it was no match for me at kick boxing';
+
+console.log(quote.indexOf('chess'));
+
+// ASSIGNMENT 15.3
+console.log(quote.slice(quote.lastIndexOf(' ') + 1));
+
+// ASSIGNMENT 15.4
+
+const isContributor = authorName => {
+  if (authorName.slice(authorName.lastIndexOf(' ') + 1) === '(Contributor)') {
+    console.log(true);
+  } else {
+    console.log(false);
+  }
+};
+
+isContributor('Julie Sussman');
+
+const isContributor2 = authorName => {
+  return authorName.lastIndexOf('(Contributor)') !== -1;
+};
+
+isContributor2('Julie Sussman');
+
+const correctName = name => {
+  const nameLower = name.toLowerCase();
+  const correctedName = nameLower[0].toUpperCase() + nameLower.slice(1);
+  return correctedName;
+};
+
+console.log(correctName('dANieL'));
+
+console.log('DanielD'.replace('D', 'B'));
+console.log('DanielD'.replaceAll('D', 'B'));
+
+// ASSIGNMENT 16.1
+
+function normalizeAuthorName(name) {
+  if (name.includes('(Contributor)')) {
+    name = name.slice(0, name.indexOf('(Contributor)'));
+  }
+  const lowerCaseName = name.trim().toLowerCase();
+  const firstWordCapitalized = lowerCaseName.replace(
+    lowerCaseName[0],
+    lowerCaseName[0].toUpperCase()
+  );
+  return firstWordCapitalized.replace(
+    firstWordCapitalized[firstWordCapitalized.indexOf(' ') + 1],
+    firstWordCapitalized[firstWordCapitalized.indexOf(' ') + 1].toUpperCase()
+  );
+}
+
+console.log(normalizeAuthorName('  JuliE sussMan (Contributor)'));
+
+// ASSIGNMENT 16.2
+const newBookTitle = books[1].title.replace('Programs', 'Software');
+
+// ASSIGNMENT 16.3
+
+function logBookTheme(bookTitle) {
+  bookTitle = bookTitle.toLowerCase();
+  if (bookTitle.includes('computer')) {
+    console.log('This book is about computers');
+  } else if (
+    bookTitle.includes('algorithms') &&
+    bookTitle.includes('structures')
+  ) {
+    console.log('This book is about algorithms and data structures');
+  } else if (bookTitle.endsWith('system') || bookTitle.endsWith('systems')) {
+    if (!bookTitle.includes('operating')) {
+      console.log(
+        'This book is about some systems, but definitely not about operating systems'
+      );
+    }
+  }
+}
+
+const [myFirstName, mySecondName] = 'Daniel Hameed'.split(' ');
+
+console.log('Daniel'.split(''));
+console.log(['Mr.', myFirstName, mySecondName].join());
+
+function capitalizeNames(names) {
+  names = names.toLowerCase().trim();
+  const nameArr = names.split(' ');
+  let capitalizedNames = '';
+  for (let i = 0; i < nameArr.length; i++) {
+    capitalizedNames += nameArr[i].replace(
+      nameArr[i][0],
+      nameArr[i][0].toUpperCase()
+    );
+    capitalizedNames += ' ';
+  }
+  return capitalizedNames.trim();
+}
+
+console.log(capitalizeNames(' daniel Hameed Olanrewaju pHilip  '));
+
+function maskNumber(atmNumber) {
+  if (atmNumber.length === 16) {
+    return atmNumber.slice(-4).padStart(atmNumber.length, '*');
+  } else if (atmNumber.length < 16) {
+    return 'Number incomplete!!';
+  } else {
+    return 'Number exceeds 16 digits';
+  }
+}
+
+console.log(maskNumber('2034399002125581'));
+console.log(maskNumber('20343222222202125581'));
+
+console.log('Daniel'.repeat(2));
+
+// ASSIGNMENT 17.1
+const bookCategories =
+  'science;computing;computer science;algorithms;business;operating systems;networking;electronics';
+function logBookCategories(bookCategories) {
+  const categoriesArr = bookCategories.split(';');
+  for (const category of categoriesArr) {
+    console.log(category);
+  }
+}
+logBookCategories(bookCategories);
+
+// ASSIGNMENT 17.2
+function getKeywordsAsString(books) {
+  const keywordsArr = [];
+  for (const book of books) {
+    keywordsArr.push(...book.keywords);
+  }
+  const keywordUniqueArr = [...new Set(keywordsArr)];
+
+  return keywordUniqueArr.join(';');
+}
+
+console.log(getKeywordsAsString(books));
+
+//ASSIGNMENT 17.3
+const bookChapters = [
+  ['The Basics', 14],
+  ['Sorting', 254],
+  ['Searching', 372],
+  ['Graphs', 526],
+  ['Strings', 706],
+];
+function logBookChapters(bookChapters) {
+  for (const book of bookChapters) {
+    console.log([book[0].padEnd(20, '_'), book[1]].join(' '));
+  }
+}
+
+logBookChapters(bookChapters);
