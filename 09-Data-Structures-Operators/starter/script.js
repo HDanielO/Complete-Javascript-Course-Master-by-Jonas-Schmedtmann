@@ -953,3 +953,28 @@ function logBookChapters(bookChapters) {
 }
 
 logBookChapters(bookChapters);
+
+// CODING CHALLENGE 4
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+const button = document.querySelector('button');
+
+button.addEventListener('click', function camelCaseConverter() {
+  const inputText = document.querySelector('textarea').value;
+
+  const stringArr = inputText.split('\n');
+
+  const trimStringArr = [];
+  for (const str of stringArr) {
+    trimStringArr.push(str.trim());
+  }
+
+  for (const str of trimStringArr) {
+    let [word1, word2] = str.split('_');
+    word1 = word1.toLowerCase();
+    word2 = word2.toLowerCase();
+    word2 = word2.replace(word2[0], word2[0].toUpperCase());
+    console.log(word1 + word2);
+  }
+});
