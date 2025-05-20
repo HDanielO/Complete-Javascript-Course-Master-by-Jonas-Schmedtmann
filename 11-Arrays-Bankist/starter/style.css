@@ -16,7 +16,7 @@ html {
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: #444;
   background-color: #f3f3f3;
   height: 100vh;
@@ -60,6 +60,22 @@ nav {
 .login__input:focus {
   outline: none;
   border: 1px solid #ccc;
+}
+
+.login__input::-webkit-input-placeholder {
+  color: #bbb;
+}
+
+.login__input::-moz-placeholder {
+  color: #bbb;
+}
+
+.login__input:-ms-input-placeholder {
+  color: #bbb;
+}
+
+.login__input::-ms-input-placeholder {
+  color: #bbb;
 }
 
 .login__input::placeholder {

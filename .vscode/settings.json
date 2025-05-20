@@ -1,3 +1,14 @@
 {
-  "liveServer.settings.port": 5501
+  "liveServer.settings.port": 5501,
+  "editor.quickSuggestions": {
+    "other": "off"
+  },
+  "github.copilot.editor.enableCodeActions": false,
+  "github.copilot.enable": {
+    "*": false
+  },
+  "editor.hover.sticky": false,
+  "editor.hover.hidingDelay": 300,
+  "editor.hover.delay": 100,
+  "workbench.hover.delay": 100
 }
