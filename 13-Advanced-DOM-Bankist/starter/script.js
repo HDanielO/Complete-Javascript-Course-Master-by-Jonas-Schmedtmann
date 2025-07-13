@@ -5,6 +5,15 @@
 
 const navLogo = document.querySelector('.nav__logo');
 const navItems = document.querySelectorAll('.nav__link');
+const sectionElement = document.querySelectorAll('.section');
+const featuresImgs = document.querySelectorAll('.features__img');
+const operationTabElms = document.querySelectorAll('.operations__tab');
+const operationContentElms = document.querySelectorAll('.operations__content');
+const slideElms = document.querySelectorAll('.slide');
+const slideBtnLeft = document.querySelector('.slider__btn--left');
+const slideBtnRight = document.querySelector('.slider__btn--right');
+const dotBtns = document.querySelectorAll('.dots__dot');
+
 // Modal window
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
@@ -77,19 +86,14 @@ const observerSection = new IntersectionObserver(
   }
 );
 
-const sectionElement = document.querySelectorAll('.section');
-
 sectionElement.forEach(secELm => {
   secELm.classList.add('section--hidden');
   observerSection.observe(secELm);
 });
 
-const featuresImgs = document.querySelectorAll('.features__img');
-
 const observerFeaturesImgs = new IntersectionObserver(
   entries => {
     entries.forEach(entry => {
-      console.log(entry);
       if (entry.isIntersecting) {
         if (entry.target.dataset.src) {
           entry.target.src = entry.target.dataset.src;
@@ -108,4 +112,83 @@ const observerFeaturesImgs = new IntersectionObserver(
 
 featuresImgs.forEach(featureImg => {
   observerFeaturesImgs.observe(featureImg);
+});
+
+operationTabElms.forEach((operationTabElm, i) => {
+  operationTabElm.addEventListener('click', () => {
+    operationTabElms.forEach(tab =>
+      tab.classList.remove('operations__tab--active')
+    );
+    operationContentElms.forEach(content =>
+      content.classList.remove('operations__content--active')
+    );
+    operationTabElm.classList.add('operations__tab--active');
+    operationContentElms[i].classList.add('operations__content--active');
+  });
+});
+
+slideElms.forEach((slideElm, i) => {
+  if (i === 0) {
+    slideElm.style.transform = 'translateX(0%)';
+  } else if (i === 1) {
+    slideElm.style.transform = 'translateX(100%)';
+  } else if (i === 2) {
+    slideElm.style.transform = 'translateX(200%)';
+  }
+});
+
+slideBtnRight.addEventListener('click', () => {
+  if (slideElms[0].style.transform === 'translateX(0%)') {
+    slideElms[0].style.transform = 'translateX(-100%)';
+    slideElms[1].style.transform = 'translateX(0%)';
+    slideElms[2].style.transform = 'translateX(100%)';
+    dotBtns.forEach(dotBtn => {
+      dotBtn.classList.remove('dots__dot--active');
+    });
+    dotBtns[1].classList.add('dots__dot--active');
+  } else if (slideElms[0].style.transform === 'translateX(-100%)') {
+    slideElms[0].style.transform = 'translateX(-200%)';
+    slideElms[1].style.transform = 'translateX(-100%)';
+    slideElms[2].style.transform = 'translateX(0%)';
+    dotBtns.forEach(dotBtn => {
+      dotBtn.classList.remove('dots__dot--active');
+    });
+    dotBtns[2].classList.add('dots__dot--active');
+  } else if (slideElms[0].style.transform === 'translateX(-200%)') {
+    slideElms[0].style.transform = 'translateX(0%)';
+    slideElms[1].style.transform = 'translateX(100%)';
+    slideElms[2].style.transform = 'translateX(200%)';
+    dotBtns.forEach(dotBtn => {
+      dotBtn.classList.remove('dots__dot--active');
+    });
+    dotBtns[0].classList.add('dots__dot--active');
+  }
+});
+
+slideBtnLeft.addEventListener('click', () => {
+  if (slideElms[0].style.transform === 'translateX(0%)') {
+    slideElms[0].style.transform = 'translateX(-200%)';
+    slideElms[1].style.transform = 'translateX(-100%)';
+    slideElms[2].style.transform = 'translateX(0%)';
+    dotBtns.forEach(dotBtn => {
+      dotBtn.classList.remove('dots__dot--active');
+    });
+    dotBtns[2].classList.add('dots__dot--active');
+  } else if (slideElms[0].style.transform === 'translateX(-100%)') {
+    slideElms[0].style.transform = 'translateX(0%)';
+    slideElms[1].style.transform = 'translateX(100%)';
+    slideElms[2].style.transform = 'translateX(200%)';
+    dotBtns.forEach(dotBtn => {
+      dotBtn.classList.remove('dots__dot--active');
+    });
+    dotBtns[0].classList.add('dots__dot--active');
+  } else if (slideElms[0].style.transform === 'translateX(-200%)') {
+    slideElms[0].style.transform = 'translateX(-100%)';
+    slideElms[1].style.transform = 'translateX(0%)';
+    slideElms[2].style.transform = 'translateX(100%)';
+    dotBtns.forEach(dotBtn => {
+      dotBtn.classList.remove('dots__dot--active');
+    });
+    dotBtns[1].classList.add('dots__dot--active');
+  }
 });
