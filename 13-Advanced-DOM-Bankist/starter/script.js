@@ -71,10 +71,11 @@ navItems.forEach((nav, i) => {
 });
 
 const observerSection = new IntersectionObserver(
-  entries => {
+  (entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.remove('section--hidden');
+        observer.unobserve(entry.target);
       }
     });
   },
@@ -91,13 +92,14 @@ sectionElement.forEach(secELm => {
 });
 
 const observerFeaturesImgs = new IntersectionObserver(
-  entries => {
+  (entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         if (entry.target.dataset.src) {
           entry.target.src = entry.target.dataset.src;
           entry.target.removeAttribute('data-src');
           entry.target.classList.remove('lazy-img');
+          observer.unobserve(entry.target);
         }
       }
     });
@@ -191,3 +193,5 @@ slideBtnLeft.addEventListener('click', () => {
     dotBtns[1].classList.add('dots__dot--active');
   }
 });
+
+// how can i implement observe.unobserve(event.target in js)
