@@ -3,6 +3,7 @@
 ///////////////////////////////////////
 // DOM Elements
 
+const nav = document.querySelector('.nav');
 const navLogo = document.querySelector('.nav__logo');
 const navItems = document.querySelectorAll('.nav__link');
 const sectionElement = document.querySelectorAll('.section');
@@ -13,6 +14,7 @@ const slideElms = document.querySelectorAll('.slide');
 const slideBtnLeft = document.querySelector('.slider__btn--left');
 const slideBtnRight = document.querySelector('.slider__btn--right');
 const dotBtns = document.querySelectorAll('.dots__dot');
+const featuresDiv = document.querySelector('#section--1');
 
 // Modal window
 const modal = document.querySelector('.modal');
@@ -194,4 +196,54 @@ slideBtnLeft.addEventListener('click', () => {
   }
 });
 
-// how can i implement observe.unobserve(event.target in js)
+dotBtns.forEach((dotBtn, i) => {
+  if (i === 0) {
+    dotBtn.addEventListener('click', () => {
+      slideElms[0].style.transform = 'translateX(0%)';
+      slideElms[1].style.transform = 'translateX(100%)';
+      slideElms[2].style.transform = 'translateX(200%)';
+      dotBtns.forEach(dotBtn => {
+        dotBtn.classList.remove('dots__dot--active');
+      });
+      dotBtns[0].classList.add('dots__dot--active');
+    });
+  } else if (i === 1) {
+    dotBtn.addEventListener('click', () => {
+      slideElms[0].style.transform = 'translateX(-100%)';
+      slideElms[1].style.transform = 'translateX(0%)';
+      slideElms[2].style.transform = 'translateX(100%)';
+      dotBtns.forEach(dotBtn => {
+        dotBtn.classList.remove('dots__dot--active');
+      });
+      dotBtns[1].classList.add('dots__dot--active');
+    });
+  } else if (i === 2) {
+    dotBtn.addEventListener('click', () => {
+      slideElms[0].style.transform = 'translateX(-200%)';
+      slideElms[1].style.transform = 'translateX(-100%)';
+      slideElms[2].style.transform = 'translateX(0%)';
+      dotBtns.forEach(dotBtn => {
+        dotBtn.classList.remove('dots__dot--active');
+      });
+      dotBtns[2].classList.add('dots__dot--active');
+    });
+  }
+});
+
+document.addEventListener('scroll', () => {
+  if (
+    window.scrollY >=
+    featuresDiv.getBoundingClientRect().top + window.scrollY
+  ) {
+    console.log(window.scrollY);
+    console.log(featuresDiv.getBoundingClientRect().top);
+    nav.classList.add('sticky');
+  } else if (
+    window.scrollY <
+    featuresDiv.getBoundingClientRect().top + window.scrollY
+  ) {
+    nav.classList.remove('sticky');
+    console.log(window.scrollY);
+    console.log(featuresDiv.getBoundingClientRect().top);
+  }
+});
