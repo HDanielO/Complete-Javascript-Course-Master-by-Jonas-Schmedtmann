@@ -99,9 +99,12 @@ const observerFeaturesImgs = new IntersectionObserver(
       if (entry.isIntersecting) {
         if (entry.target.dataset.src) {
           entry.target.src = entry.target.dataset.src;
-          entry.target.removeAttribute('data-src');
-          entry.target.classList.remove('lazy-img');
-          observer.unobserve(entry.target);
+          // when we change the src, the image loads so we want the blur filter to be removed after the image has been loaded
+          entry.target.addEventListener('load', () => {
+            entry.target.removeAttribute('data-src');
+            entry.target.classList.remove('lazy-img');
+            observer.unobserve(entry.target);
+          });
         }
       }
     });
@@ -229,6 +232,10 @@ dotBtns.forEach((dotBtn, i) => {
     });
   }
 });
+
+// CAM BE MADE BETTER WITH INTERSECTIONOBSERVER API
+
+// YOU JUST NEED IT TO OBSERVE THE HEADER , WITH A THRESHOLD OF 0 BUT WHEN IT IS NOT INTERSECTION SO YOUR ADDING OF STICKY CLASS WILL RUN WHEN THE ISINTERSECTING IS FALSE
 
 document.addEventListener('scroll', () => {
   if (
