@@ -133,104 +133,50 @@ operationTabElms.forEach((operationTabElm, i) => {
   });
 });
 
-slideElms.forEach((slideElm, i) => {
-  if (i === 0) {
-    slideElm.style.transform = 'translateX(0%)';
-  } else if (i === 1) {
-    slideElm.style.transform = 'translateX(100%)';
-  } else if (i === 2) {
-    slideElm.style.transform = 'translateX(200%)';
-  }
-});
+let currentSlideELms = 0;
+
+const goToSlide = function (currSli) {
+  slideElms.forEach((s, i) => {
+    s.style.transform = `translateX(${100 * (i - currSli)}%)`;
+  });
+};
+
+goToSlide(currentSlideELms);
+
+const setActiveDotBtn = function (curr) {
+  dotBtns.forEach(dotBtn => {
+    dotBtn.classList.remove('dots__dot--active');
+  });
+  dotBtns[curr].classList.add('dots__dot--active');
+};
 
 slideBtnRight.addEventListener('click', () => {
-  if (slideElms[0].style.transform === 'translateX(0%)') {
-    slideElms[0].style.transform = 'translateX(-100%)';
-    slideElms[1].style.transform = 'translateX(0%)';
-    slideElms[2].style.transform = 'translateX(100%)';
-    dotBtns.forEach(dotBtn => {
-      dotBtn.classList.remove('dots__dot--active');
-    });
-    dotBtns[1].classList.add('dots__dot--active');
-  } else if (slideElms[0].style.transform === 'translateX(-100%)') {
-    slideElms[0].style.transform = 'translateX(-200%)';
-    slideElms[1].style.transform = 'translateX(-100%)';
-    slideElms[2].style.transform = 'translateX(0%)';
-    dotBtns.forEach(dotBtn => {
-      dotBtn.classList.remove('dots__dot--active');
-    });
-    dotBtns[2].classList.add('dots__dot--active');
-  } else if (slideElms[0].style.transform === 'translateX(-200%)') {
-    slideElms[0].style.transform = 'translateX(0%)';
-    slideElms[1].style.transform = 'translateX(100%)';
-    slideElms[2].style.transform = 'translateX(200%)';
-    dotBtns.forEach(dotBtn => {
-      dotBtn.classList.remove('dots__dot--active');
-    });
-    dotBtns[0].classList.add('dots__dot--active');
+  if (currentSlideELms === slideElms.length - 1) {
+    currentSlideELms = 0;
+  } else {
+    currentSlideELms++;
   }
+
+  goToSlide(currentSlideELms);
+  setActiveDotBtn(currentSlideELms);
 });
 
 slideBtnLeft.addEventListener('click', () => {
-  if (slideElms[0].style.transform === 'translateX(0%)') {
-    slideElms[0].style.transform = 'translateX(-200%)';
-    slideElms[1].style.transform = 'translateX(-100%)';
-    slideElms[2].style.transform = 'translateX(0%)';
-    dotBtns.forEach(dotBtn => {
-      dotBtn.classList.remove('dots__dot--active');
-    });
-    dotBtns[2].classList.add('dots__dot--active');
-  } else if (slideElms[0].style.transform === 'translateX(-100%)') {
-    slideElms[0].style.transform = 'translateX(0%)';
-    slideElms[1].style.transform = 'translateX(100%)';
-    slideElms[2].style.transform = 'translateX(200%)';
-    dotBtns.forEach(dotBtn => {
-      dotBtn.classList.remove('dots__dot--active');
-    });
-    dotBtns[0].classList.add('dots__dot--active');
-  } else if (slideElms[0].style.transform === 'translateX(-200%)') {
-    slideElms[0].style.transform = 'translateX(-100%)';
-    slideElms[1].style.transform = 'translateX(0%)';
-    slideElms[2].style.transform = 'translateX(100%)';
-    dotBtns.forEach(dotBtn => {
-      dotBtn.classList.remove('dots__dot--active');
-    });
-    dotBtns[1].classList.add('dots__dot--active');
+  if (currentSlideELms === 0) {
+    currentSlideELms = slideElms.length - 1;
+  } else {
+    currentSlideELms--;
   }
+
+  goToSlide(currentSlideELms);
+  setActiveDotBtn(currentSlideELms);
 });
 
 dotBtns.forEach((dotBtn, i) => {
-  if (i === 0) {
-    dotBtn.addEventListener('click', () => {
-      slideElms[0].style.transform = 'translateX(0%)';
-      slideElms[1].style.transform = 'translateX(100%)';
-      slideElms[2].style.transform = 'translateX(200%)';
-      dotBtns.forEach(dotBtn => {
-        dotBtn.classList.remove('dots__dot--active');
-      });
-      dotBtns[0].classList.add('dots__dot--active');
-    });
-  } else if (i === 1) {
-    dotBtn.addEventListener('click', () => {
-      slideElms[0].style.transform = 'translateX(-100%)';
-      slideElms[1].style.transform = 'translateX(0%)';
-      slideElms[2].style.transform = 'translateX(100%)';
-      dotBtns.forEach(dotBtn => {
-        dotBtn.classList.remove('dots__dot--active');
-      });
-      dotBtns[1].classList.add('dots__dot--active');
-    });
-  } else if (i === 2) {
-    dotBtn.addEventListener('click', () => {
-      slideElms[0].style.transform = 'translateX(-200%)';
-      slideElms[1].style.transform = 'translateX(-100%)';
-      slideElms[2].style.transform = 'translateX(0%)';
-      dotBtns.forEach(dotBtn => {
-        dotBtn.classList.remove('dots__dot--active');
-      });
-      dotBtns[2].classList.add('dots__dot--active');
-    });
-  }
+  dotBtn.addEventListener('click', () => {
+    goToSlide(i);
+    setActiveDotBtn(i);
+  });
 });
 
 // CAM BE MADE BETTER WITH INTERSECTIONOBSERVER API
@@ -238,19 +184,11 @@ dotBtns.forEach((dotBtn, i) => {
 // YOU JUST NEED IT TO OBSERVE THE HEADER , WITH A THRESHOLD OF 0 BUT WHEN IT IS NOT INTERSECTION SO YOUR ADDING OF STICKY CLASS WILL RUN WHEN THE ISINTERSECTING IS FALSE
 
 document.addEventListener('scroll', () => {
-  if (
-    window.scrollY >=
-    featuresDiv.getBoundingClientRect().top + window.scrollY
-  ) {
-    console.log(window.scrollY);
-    console.log(featuresDiv.getBoundingClientRect().top);
+  const featuresDivPosition =
+    featuresDiv.getBoundingClientRect().top + window.scrollY;
+  if (window.scrollY >= featuresDivPosition) {
     nav.classList.add('sticky');
-  } else if (
-    window.scrollY <
-    featuresDiv.getBoundingClientRect().top + window.scrollY
-  ) {
+  } else if (window.scrollY < featuresDivPosition) {
     nav.classList.remove('sticky');
-    console.log(window.scrollY);
-    console.log(featuresDiv.getBoundingClientRect().top);
   }
 });
