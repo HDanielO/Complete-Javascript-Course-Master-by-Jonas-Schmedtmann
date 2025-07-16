@@ -45,8 +45,8 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
-window.addEventListener('load', () => {
-  console.log('page is fully loaded');
+window.addEventListener('load', e => {
+  console.log('page is fully loaded', e);
   navLogo.classList.add('nav__logo_big');
 });
 
@@ -192,3 +192,11 @@ document.addEventListener('scroll', () => {
     nav.classList.remove('sticky');
   }
 });
+
+// window.addEventListener('beforeunload', e => {
+//   e.preventDefault();
+//   console.log(e);
+//   e.returnValue = '';
+// });
+
+
